@@ -1,0 +1,24 @@
+/* Override de paleta — solo para vista previa (preview-terracota.html) */
+:root {
+  --color-navy: #4a4238;
+  --color-navy-dark: #332d26;
+  --color-accent: #c1502e;
+  --color-accent-dark: #9c3e21;
+}
+
+.hero::before {
+  background-image: linear-gradient(180deg, rgba(51, 45, 38, 0.78), rgba(51, 45, 38, 0.92)), url("../img/hero-carretera-oyon.jpg");
+}
+
+.preview-banner {
+  position: fixed;
+  top: var(--header-height);
+  inset-inline: 0;
+  z-index: 99;
+  background: var(--color-accent);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+}
