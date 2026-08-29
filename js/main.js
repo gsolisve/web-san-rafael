@@ -36,7 +36,23 @@
   }
 
   // Animaciones "reveal on scroll".
-  var revealTargets = document.querySelectorAll("[data-reveal], [data-reveal-stagger]");
+  // Cada tarjeta dentro de un grupo [data-reveal-stagger] se observa por
+  // separado: si se observara el contenedor completo, en pantallas angostas
+  // (una sola columna con muchas tarjetas apiladas) su altura total supera
+  // varias veces la del viewport y nunca llega a cubrir el 15% requerido,
+  // así que la animación no se dispara y el contenido queda con opacity:0.
+  var staggerGroups = document.querySelectorAll("[data-reveal-stagger]");
+  var staggerChildren = [];
+  staggerGroups.forEach(function (group) {
+    Array.prototype.forEach.call(group.children, function (child) {
+      staggerChildren.push(child);
+    });
+  });
+
+  var revealTargets = Array.prototype.slice
+    .call(document.querySelectorAll("[data-reveal]"))
+    .concat(staggerChildren);
+
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (prefersReducedMotion || !("IntersectionObserver" in window)) {
@@ -53,7 +69,7 @@
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
 
     revealTargets.forEach(function (el) {
