@@ -1,0 +1,14 @@
+# Todo lo que está en este repositorio se publica en GitHub Pages.
+# Aquí va lo que NO es parte del sitio: material de origen, documentación y herramientas.
+
+# Material de origen de la empresa (brochure .docx de 48 MB y PDFs originales)
+brochure/
+resources/
+
+# Documentación y planificación (OpenSpec, log de aprendizaje, notas)
+docs/
+openspec/
+sdd_marcia.txt
+
+# Configuración local de Claude Code
+.claude/
